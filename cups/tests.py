@@ -1,6 +1,6 @@
 from django.test import TestCase
 # from django.urls import reverse
-from .models import Trophy, Season
+from .models import Trophy, Season, Story
 
 class TrophiesTestCase(TestCase):
     def test_trophy_creation(self):
@@ -22,6 +22,9 @@ class TrophiesTestCase(TestCase):
         trophy = Trophy.objects.create(name="Premier League", weight=2000)
         season.trophies.add(trophy)
 
+    def test_one2many(self):
+        season = Season.objects.create(year=2019)
+        story = Story.objects.create(season=season)
 
 class TrophiesAPITestCase(TestCase):
     def test_list_trophies(self):

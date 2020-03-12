@@ -13,3 +13,7 @@ class Trophy(models.Model):
 class Season(models.Model):
     year = models.PositiveIntegerField()
     trophies = models.ManyToManyField(Trophy)
+
+class Story(models.Model):
+    season = models.ForeignKey(Season, on_delete=models.CASCADE)
+    title = models.CharField(max_length=500)
