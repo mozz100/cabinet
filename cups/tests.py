@@ -1,6 +1,6 @@
 from django.test import TestCase
 # from django.urls import reverse
-from .models import Trophy
+from .models import Trophy, Season
 
 class TrophiesTestCase(TestCase):
     def test_trophy_creation(self):
@@ -16,6 +16,11 @@ class TrophiesTestCase(TestCase):
 
         # No inter-dependent tests here
         self.assertEqual(1, Trophy.objects.count())
+
+    def test_many2many(self):
+        season = Season.objects.create(year=2019)
+        trophy = Trophy.objects.create(name="Premier League", weight=2000)
+        season.trophies.add(trophy)
 
 
 class TrophiesAPITestCase(TestCase):

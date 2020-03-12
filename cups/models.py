@@ -9,3 +9,7 @@ class Trophy(models.Model):
 
     def __str__(self):
         return self.name
+
+class Season(models.Model):
+    year = models.PositiveIntegerField()
+    trophies = models.ManyToManyField(Trophy)
