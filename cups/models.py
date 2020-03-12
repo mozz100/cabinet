@@ -11,8 +11,11 @@ class Trophy(models.Model):
         return self.name
 
 class Season(models.Model):
-    year = models.PositiveIntegerField()
+    year = models.PositiveIntegerField(help_text="year season ended")
     trophies = models.ManyToManyField(Trophy)
+
+    def __str__(self):
+        return f"{self.year-1}-{self.year}"
 
 class Story(models.Model):
     season = models.ForeignKey(Season, on_delete=models.CASCADE)
