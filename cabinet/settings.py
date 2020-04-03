@@ -81,6 +81,17 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+if os.environ.get("dbURL"):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ["dbName"],
+            'USER': os.environ["dbUser"],
+            'PASSWORD': os.environ["dbPassword"],
+            'HOST': os.environ["dbURL"].split(":")[0],
+        }
+    }
+    ALLOWED_HOSTS = [os.environ["domainName"]]
 
 
 # Password validation
@@ -120,3 +131,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Because serverless finch plugin looks here
+STATIC_ROOT = os.path.join(BASE_DIR, 'client', 'dist')

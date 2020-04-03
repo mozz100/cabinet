@@ -1,2 +1,8 @@
 __pycache__
 db.sqlite3
+secrets.sourceme
+
+# Serverless directories
+.serverless
+client/dist
+node_modules
